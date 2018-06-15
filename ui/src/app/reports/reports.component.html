@@ -1,0 +1,52 @@
+<h1 class="title">Reportes</h1>
+
+<section class="filters">
+  <div class="options">
+    <select name="emissionPoint" [(ngModel)]="query.emissionPoint" (change)="getUsers()" [disabled]="role === 2" (change)="validate()">
+      <option value="">Seleccione un punto</option>
+      <option *ngFor="let point of emissionPoints" [value]="point.id">{{ point.name }}</option>
+    </select>
+    <select name="user" [(ngModel)]="query.user" [disabled]="role === 2" (change)="validate()">
+      <option value="">Seleccione un usuario</option>
+      <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+    </select>
+    <!-- <ngx-daterangepicker
+      [(ngModel)]="query.from"
+      [options]="datepickerOptions"
+    >
+    </ngx-daterangepicker> -->
+    <ngx-daterangepicker
+      [(ngModel)]="date"
+      [options]="datepickerOptions"
+    >
+    </ngx-daterangepicker>
+  </div>
+  <div class="actions">
+    <button class="btn" (click)="search()" [disabled]="!isValidSearch"> Buscar </button>
+    <button class="btn success" (click)="export()" [disabled]="!isValidSearch">Generar</button>
+  </div>
+</section>
+
+<section class="data">
+  <ngx-datatable
+    class="material"
+    [rows]="rows"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [externalPaging]="true"
+    [count]="page.totalElements"
+    [offset]="page.pageNumber"
+    [limit]="page.size"
+    (page)='setPage($event)'
+    [loadingIndicator]="isFetching"
+    [messages]="{ emptyMessage: 'Sin información', totalMessage: 'en total' }"
+  >
+  </ngx-datatable>
+
+  <ng-template #currencyTpl let-row="row" let-value="value">
+    {{ value | currency:displaySymbol:'S/' }}
+  </ng-template>
+</section>

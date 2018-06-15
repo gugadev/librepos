@@ -1,0 +1,41 @@
+<h1 class="title">Registrar usuario</h1>
+
+<a class="back" routerLink="/users">
+  <i class="material-icons">arrow_back</i>
+</a>
+
+<form (ngSubmit)="register()">
+  <article class="form-body">
+    <input type="text" name="name" placeholder="Nombre completo" autocomplete="off" [(ngModel)]="user.name" (input)="validate()" required>
+    <input type="text" name="username" placeholder="Nombre de usuario" autocomplete="off" [(ngModel)]="user.username" (input)="validate()" required>
+    <input type="email" name="email" placeholder="Correo electrónico" autocomplete="off" [(ngModel)]="user.email" (input)="validate()" required>
+    <select name="role" [(ngModel)]="user.roleId" (change)="validate()" required>
+      <option value="">Seleccione un rol</option>
+      <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+    </select>
+    <select name="point" [(ngModel)]="user.emissionPointId" (change)="validate()" required>
+      <option value="">Seleccione un punto de emisión</option>
+      <option *ngFor="let point of emissionPoints" [value]="point.id">{{ point.name }}</option>
+    </select>
+    <select name="state" [(ngModel)]="user.isActive" (change)="validate()" required>
+      <option value="">Seleccione un estado</option>
+      <option value="true">Activo</option>
+      <option value="false">Inactivo</option>
+    </select>
+    <select name="turn" [(ngModel)]="user.turnId" (change)="validate()" required>
+      <option value="">Seleccione un turno</option>
+      <option value="M">Mañana</option>
+      <option value="T">Tarde</option>
+      <option value="N">Noche</option>
+    </select>
+  </article>
+  <section class="errors" *ngIf="submitErrors.length > 0">
+    <p class="error" *ngFor="let error of submitErrors">
+      <i class="material-icons">highlight_off</i>
+      <span>{{ error }}</span>
+    </p>
+  </section>
+  <footer class="form-foot">
+    <button class="btn success" [disabled]="!isFormValid">Registrar</button>
+  </footer>
+</form>

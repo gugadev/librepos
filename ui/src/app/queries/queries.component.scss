@@ -1,0 +1,82 @@
+@import "../../assets/styles/colors";
+
+:host {
+  font-family: 'Lato';
+  padding: 40px;
+
+  .title {
+    display: none;
+  }
+
+  .email-link {
+    color: $primary;
+  }
+
+  .state-img {
+    height: 30px;
+    width: 30px;
+  }
+
+  .filters {
+    display: flex;
+    margin: 10px auto 30px auto;
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      flex: 1;
+
+      .basic > *,
+      .advanced > * {
+        margin: 0 10px;
+        width: calc(100% / 4);
+      }
+      .basic ngx-daterangepicker {
+        width: 54%;
+      }
+      .advanced > * {
+        margin: 10px 10px 0 10px;
+      }
+      .basic, .advanced {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        & *:first-child {
+          margin-left: 0;
+        }
+      }
+    
+      select[name="state"],
+      select[name="user"] {
+        margin-left: 0;
+      }
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 20%;
+      justify-content: space-between;
+      padding: 0;
+      max-width: 160px;
+
+      // .btn:first-of-type {
+      //   margin-left: 10px;
+      // }
+      .btn {
+        height: 31px;
+        width: 100%;
+
+        &:last-of-type {
+          margin-bottom: 4px;
+        }
+      }
+    }
+  }
+
+  .edit-btn {
+    color: #555;
+    cursor: pointer;
+  }
+}

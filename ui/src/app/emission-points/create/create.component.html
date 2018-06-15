@@ -1,0 +1,27 @@
+<h1 class="title">Registrar Punto de Emisión</h1>
+
+<a class="back" routerLink="/emission_points">
+  <i class="material-icons">arrow_back</i>
+</a>
+
+<form (ngSubmit)="register()">
+  <article class="form-body">
+    <input type="text" name="name" placeholder="Nombre del punto" autocomplete="off" [(ngModel)]="emissionPoint.name" (input)="validate()"
+      required>
+    <select name="state" [(ngModel)]="emissionPoint.isActive" (change)="validate()" required>
+      <option value="">Seleccione un estado</option>
+      <option value="true">Activo</option>
+      <option value="false">Inactivo</option>
+    </select>
+  </article>
+  <section class="errors" *ngIf="submitErrors.length > 0">
+    <p class="error" *ngFor="let error of submitErrors">
+      <i class="material-icons">highlight_off</i>
+      <span>{{ error }}</span>
+    </p>
+  </section>
+  <footer class="form-foot">
+    <button class="btn success" [disabled]="!isFormValid">Registrar</button>
+  </footer>
+</form>
+

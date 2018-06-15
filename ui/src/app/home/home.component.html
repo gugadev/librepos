@@ -1,0 +1,75 @@
+<aside class="sidebar" [ngClass]="{ shrink: makeSidebarSmall }">
+  <header class="provider">
+    <h3>Belatrix</h3>
+    <img src="https://i.imgur.com/kahA4kn.png" alt="logo big" class="logo-big">
+    <img src="https://i.imgur.com/8sqWrZ4.png" alt="logo smmall" class="logo-small"/>
+  </header>
+  <article class="company">
+    <img src="http://pinsoft.ec/images/default.png" alt="company-logo" />
+  </article>
+  <section class="role">
+    <span>{{ user.role ? user.role.name : '' }}</span>
+  </section>
+  <nav class="navigation">
+    <a class="menu" *ngFor="let menu of menus" [routerLink]="menu.path" routerLinkActive="active">
+      <i class="material-icons">{{ menu.icon }}</i>
+      <span>{{ menu.name }}</span>
+    </a>
+  </nav>
+</aside>
+<section class="main-area">
+  <header class="top-header">
+    <button class="btn icon flat" (click)="toggleSidebar()">
+      <i class="material-icons">menu</i>
+    </button>
+    <div class="user" (click)="toggleUserMenu()">
+        <figure class="photo">
+            <img [src]="user && user.photo ? user.photo : 'https://www.timeshighereducation.com/sites/default/files/byline_photos/default-avatar.png'"
+        alt="user photo">
+          </figure>
+      <span class="name">{{ user.name }}</span>
+      <i class="material-icons">keyboard_arrow_down</i>
+      <ul class="user__dropdown" [ngClass]="{ visible: showUserMenu }">
+        <li class="user__dropdown__option">
+          <!-- <a routerLink="/logout">Cerrar sesión</a> -->
+          <a (click)="logout()">Cerrar sesión</a>
+        </li>
+        <li class="user__dropdown__option">
+          <a [routerLink]="'/' + user.username + '/profile'">Perfil</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <article class="content" [@fadeAnimation]="getRouterOutletState(o)">
+    <router-outlet #o="outlet"></router-outlet>
+  </article>
+</section>
+<!-- <header>
+  <a routerLink="/" class="logo"></a>
+  <nav>
+    <a *ngFor="let menu of menus" [routerLink]="menu.path" routerLinkActive="active">
+      {{ menu.name }}
+    </a>
+  </nav>
+  <div class="user" (click)="toggleMenu()">
+    <figure class="photo">
+      <img [src]="user && user.photo ? user.photo : 'https://www.timeshighereducation.com/sites/default/files/byline_photos/default-avatar.png'"
+  alt="user photo">
+    </figure>
+    <i class="material-icons">keyboard_arrow_down</i>
+    <ul class="user__dropdown" [ngClass]="{ visible: showUserMenu }">
+      <li class="user__dropdown__option">
+        <a routerLink="/logout">Cerrar sesión</a>
+      </li>
+      <li class="user__dropdown__option">
+        <a routerLink="/profile">Perfil</a>
+      </li>
+    </ul>
+  </div>
+</header>
+<main class="content" [@fadeAnimation]="getRouterOutletState(o)">
+  <router-outlet #o="outlet"></router-outlet>
+</main>
+<footer>
+  <p>&copy; {{ company }} - All rights reserved</p>
+</footer> -->

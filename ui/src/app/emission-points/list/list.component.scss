@@ -1,0 +1,46 @@
+@import "../../../assets/styles/colors";
+
+:host {
+  font-family: 'Lato';
+  padding: 40px;
+
+  .email-link {
+    color: $primary;
+  }
+
+  .state-img {
+    height: 30px;
+    width: 30px;
+  }
+
+  .filters {
+    display: flex;
+    margin: 10px auto 30px auto;
+    .options {
+      display: flex;
+      flex: 1;
+      * {
+        margin: 0 10px;
+        width: auto;
+      }
+      select:first-of-type {
+        margin-left: 0;
+      }
+    }
+    .actions {
+      display: flex;
+      flex: 0 0 20%;
+      justify-content: space-between;
+      padding: 0;
+      max-width: 160px;
+    }
+  }
+
+  .data {
+    margin-bottom: 60px;
+  }
+
+  .edit-btn {
+    color: #555;
+  }
+}

@@ -1,0 +1,40 @@
+<h1 class="title">Editar usuario</h1>
+
+<a routerLink="/users" class="back">
+  <i class="material-icons">arrow_back</i>
+</a>
+
+<form (ngSubmit)="update()">
+  <article class="form-body">
+    <input type="text" name="name" placeholder="Nombre completo" autocomplete="off" [(ngModel)]="user.name" (input)="validate()"
+      required>
+    <input type="text" name="username" placeholder="Nombre de usuario" autocomplete="off" [(ngModel)]="user.username" (input)="validate()"
+     disabled required>
+    <input type="email" name="email" placeholder="Correo electrónico" autocomplete="off" [(ngModel)]="user.email" (input)="validate()"
+      required>
+    <select name="role" [(ngModel)]="user.roleId" (change)="validate()" required>
+      <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+    </select>
+    <select name="point" [(ngModel)]="user.emissionPointId" (change)="validate()" required>
+      <option *ngFor="let point of emissionPoints" [value]="point.id">{{ point.name }}</option>
+    </select>
+    <select name="state" [(ngModel)]="user.isActive" (change)="validate()" required>
+      <option value="true">Activo</option>
+      <option value="false">Inactivo</option>
+    </select>
+    <select name="turn" [(ngModel)]="user.turnId" (change)="validate()" required>
+      <option value="M">Mañana</option>
+      <option value="T">Tarde</option>
+      <option value="N">Noche</option>
+    </select>
+  </article>
+  <section class="errors" *ngIf="submitErrors.length > 0">
+    <p class="error" *ngFor="let error of submitErrors">
+      <i class="material-icons">highlight_off</i>
+      <span>{{ error }}</span>
+    </p>
+  </section>
+  <footer class="form-foot">
+    <button class="btn primary" [disabled]="!isFormValid">Actualizar</button>
+  </footer>
+</form>

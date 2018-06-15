@@ -1,0 +1,43 @@
+<h1 class="title">Crear servicio</h1>
+
+<a routerLink="/services" class="back">
+  <i class="material-icons">arrow_back</i>
+</a>
+
+<form (ngSubmit)="create()">
+  <article class="form-body">
+    <input type="text" name="name" placeholder="Nombre del servicio" autocomplete="off" [(ngModel)]="service.name" (input)="validate()"
+      required>
+    <input type="text" name="code" placeholder="Código" autocomplete="off" [(ngModel)]="service.code" (input)="validate()"
+      required>
+    <input type="text" name="cost" placeholder="Costo con Igv" autocomplete="off" [(ngModel)]="service.cost" (input)="validate($event)" (change)="formatCurrency($event)"
+      required>
+    <select name="needPlate" [(ngModel)]="service.needPlate">
+      <option [value]="false">No necesita placa</option>
+      <option [value]="true">Necesita placa</option>
+    </select>
+    <select name="unitMeasurement" [(ngModel)]="service.unitMeasurement">
+      <option value="">Seleccione una unidad</option>
+      <option value="ZZ">Servicio</option>
+      <option value="UNT">Unidad</option>
+      <option value="KG">Kilogramos</option>
+    </select>
+    <select name="point" [(ngModel)]="service.emissionPointId" (change)="validate()" required>
+      <option value="">Seleccione un punto de venta</option>
+      <option *ngFor="let point of emissionPoints" [value]="point.id">{{ point.name }}</option>
+    </select>
+    <select name="state" [(ngModel)]="service.isActive" (change)="validate()" required>
+      <option [value]="true">Activo</option>
+      <option [value]="false">Inactivo</option>
+    </select>
+  </article>
+  <section class="errors" *ngIf="submitErrors.length > 0">
+    <p class="error" *ngFor="let error of submitErrors">
+      <i class="material-icons">highlight_off</i>
+      <span>{{ error }}</span>
+    </p>
+  </section>
+  <footer class="form-foot">
+    <button class="btn success" [disabled]="!isFormValid">Registrar</button>
+  </footer>
+</form>

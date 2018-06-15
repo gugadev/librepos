@@ -1,0 +1,28 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ]
+  },
+  "include": [
+    "src//*",
+    "node_modules/ngx-daterangepicker/src/ngx-daterangepicker/index.ts",
+    "node_modules/ngx-daterangepicker/src/ngx-daterangepicker/ngx-daterangepicker.component.ts",
+    "node_modules/ngx-daterangepicker/src/ngx-daterangepicker/constants.ts",
+    "node_modules/ngx-daterangepicker/src/ngx-daterangepicker/ngx-daterangepicker.module.ts",
+    "node_modules/ngx-daterangepicker/src/ngx-daterangepicker/ngx-format.pipe.ts"
+  ]
+}

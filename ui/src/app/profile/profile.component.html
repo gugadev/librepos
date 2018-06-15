@@ -1,0 +1,22 @@
+<h1 class="title">{{ user.username }}'s Perfil</h1>
+
+<a class="back" routerLink="/users">
+  <i class="material-icons">arrow_back</i>
+</a>
+
+<section class="form-split">
+  <form (ngSubmit)="update()" class="form">
+    <article class="form-body">
+      <input type="text" name="name" [(ngModel)]="user.name" disabled>
+      <input type="text" name="username" [(ngModel)]="user.username" disabled>
+      <input type="email" name="email" [(ngModel)]="user.email" placeholder="Nuevo email">
+      <input type="password" name="password" [(ngModel)]="user.password" placeholder="Nueva contraseña">
+    </article>
+  </form>
+  <span class="divider"></span>
+  <section class="photo-area">
+    <img [src]="user.photo" alt="foto del usuario">
+    <input type="file" id="photo" name="photo" style="display: none" (change)="updatePhoto($event.target.files)">
+    <label class="btn" for="photo">Subir nueva foto</label>
+  </section>
+</section>

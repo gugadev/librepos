@@ -1,0 +1,90 @@
+<h1 class="title">Consultas</h1>
+
+<section class="filters">
+  <div class="options">
+    <div class="basic">
+        <select name="state" [(ngModel)]="query.state">
+            <option value="">Todos los estados</option>
+            <option value="P">Pendientes</option>
+            <option value="A">Aceptados</option>
+            <option value="R">Rechazados</option>
+          </select>
+          <select name="emissionPoint" [disabled]="!userData.allowedToSearchByPoint" [(ngModel)]="query.emissionPoint" (change)="getUsers()">
+            <option value="">Cualquier punto</option>
+            <option *ngFor="let point of emissionPoints" [value]="point.id">{{ point.name }}</option>
+          </select>
+          <ngx-daterangepicker
+            [(ngModel)]="date"
+            [options]="datepickerOptions"
+          >
+          </ngx-daterangepicker>
+          <!-- <ng-datepicker
+            [(ngModel)]="query.to"
+            [options]="datepickerOptions"
+          >
+          </ng-datepicker> -->
+    </div>
+    <div class="advanced">
+      <select name="user" [(ngModel)]="query.user" [disabled]="!userData.allowedToSearchByUser">
+        <option value="">Todos los usuarios</option>
+        <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+      </select>
+      <input type="text" name="plate" placeholder="Placa" [(ngModel)]="query.plate">
+      <input type="text" name="serie" placeholder="Serie" [(ngModel)]="query.serie">
+      <input type="text" name="correlative" placeholder="Correlativo" [(ngModel)]="query.correlative">
+    </div>
+  </div>
+  <div class="actions">
+    <button class="btn" (click)="search()">Buscar</button>
+    <button class="btn success" (click)="export()">Exportar</button>
+  </div>
+</section>
+
+<section class="data">
+  <ngx-datatable
+    class="material"
+    [rows]="rows"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [externalPaging]="true"
+    [count]="page.totalElements"
+    [offset]="page.pageNumber"
+    [limit]="page.size"
+    (page)='setPage($event)'
+    [loadingIndicator]="isFetching"
+    [messages]="{ emptyMessage: 'Sin información', totalMessage: 'en total' }"
+  >
+  </ngx-datatable>
+
+  <ng-template #summaryTpl let-row="row" let-value="value">
+    {{ value }} - {{ row.document.correlative }}
+  </ng-template>
+
+  <ng-template #dateTpl let-row="row" let-value="value">
+    {{ value | date:'shortDate' }}
+  </ng-template>
+
+  <ng-template #currencyTpl let-row="row" let-value="value">
+    {{ value | currency:displaySymbol:'S/' }}
+  </ng-template>
+
+  <ng-template #licenseTpl let-row="row" let-value="value">
+    <span *ngIf="!value">Sin placa</span>
+    <span *ngIf="value">{{ value }}</span>
+  </ng-template>
+
+  <ng-template #stateTpl let-row="row" let-value="value">
+    <img class="state-img" *ngIf="value === 'A'" src="https://svgshare.com/i/6p6.svg" />
+    <img class="state-img" *ngIf="value === 'P'" src="https://svgshare.com/i/6wJ.svg">
+    <img class="state-img" *ngIf="value === 'R'" src="https://svgshare.com/i/6p0.svg" />
+  </ng-template>
+
+  <ng-template #actionsTpl let-row="row" let-value="value">
+    <a (click)="print(row)" class="edit-btn">
+      <i class="material-icons">print</i>
+    </a>
+  </ng-template>
+</section>

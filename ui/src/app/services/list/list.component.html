@@ -1,0 +1,51 @@
+<section class="filters">
+  <div class="options">
+    <select name="state" [(ngModel)]="query.isActive">
+      <option value="-">Todos los estados</option>
+      <option [value]="true">Solo activos</option>
+      <option [value]="false">Solo inactivos</option>
+    </select>
+    <select name="needPlate" [(ngModel)]="query.needPlate">
+      <option value="-">Con o sin placa</option>
+      <option [value]="true">Solo con placa</option>
+      <option [value]="false">Solo sin placa</option>
+    </select>
+    <select name="emissionPoint" [(ngModel)]="query.emissionPoint">
+      <option value="0">Cualquier punto</option>
+      <option *ngFor="let point of emissionPoints" [value]="point.id">{{ point.name }}</option>
+    </select>
+  </div>
+  <section class="actions">
+    <button class="btn" (click)="search()">Buscar</button>
+    <a class="btn primary" routerLink="/services/new">Nuevo</a>
+  </section>
+</section>
+
+<section class="data">
+  <ngx-datatable class="material" [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+    [rowHeight]="'auto'" [externalPaging]="true" [count]="page.totalElements" [offset]="page.pageNumber" [limit]="page.size"
+    (page)='setPage($event)' [loadingIndicator]="isFetching" [messages]="{ emptyMessage: 'Sin información', totalMessage: 'en total' }">
+  </ngx-datatable>
+
+  <ng-template #priceTpl let-row="row" let-value="value">
+    <span>{{ value | currency:'symbolDisplay':'S/' }}</span>
+  </ng-template>
+
+  <ng-template #needPlateTpl let-row="row" let-value="value">
+    <!-- <img class="state-img" *ngIf="value === true" src="https://svgshare.com/i/6p6.svg" />
+    <img class="state-img" *ngIf="value === false" src="https://svgshare.com/i/6p0.svg" /> -->
+    <span *ngIf="value === true">Sí</span>
+    <span *ngIf="value === false">No</span>
+  </ng-template>
+
+  <ng-template #stateTpl let-row="row" let-value="value">
+    <img class="state-img" *ngIf="value === true" src="https://svgshare.com/i/6p6.svg" />
+    <img class="state-img" *ngIf="value === false" src="https://svgshare.com/i/6p0.svg" />
+  </ng-template>
+
+  <ng-template #actionsTpl let-row="row" let-value="value">
+    <a [routerLink]="'/services/' + value + '/edit'" class="edit-btn">
+      <i class="material-icons">edit</i>
+    </a>
+  </ng-template>
+</section>

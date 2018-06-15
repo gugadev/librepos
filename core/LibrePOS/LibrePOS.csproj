@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+    <Folder Include="Models\" />
+    <Folder Include="Data\" />
+    <Folder Include="Models\Document\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Services\" />
+    <Folder Include="Types\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.0.2" />
+    <PackageReference Include="BCrypt.Net-Next" Version="2.1.3" />
+    <PackageReference Include="System.Drawing.Common" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" /> -->
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20180522151941_InitialCreate.cs" />
+    <Compile Remove="Migrations\DataContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\DataContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\DataContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\20180522155006_InitialCreate.cs" />
+    <Compile Remove="Migrations\DataContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\DataContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\20180522162440_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20180522205253_InitialCreate.Designer.cs" />
+  </ItemGroup>
+</Project>

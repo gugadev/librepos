@@ -1,0 +1,308 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "assets/styles/colors";
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar */
+*::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 20px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 20px;
+}
+
+
+/* TITLES */
+.title,
+.subtitle {
+  color: #444;
+  display: block;
+  font-family: 'Oswald';
+  font-weight: 400;
+  text-align: center;
+  // visibility: hidden;
+}
+
+.title {
+  font-size: 24px;
+}
+
+button,
+.btn {
+  align-items: center;
+  background-color: #fff;
+  // border: 1px solid #ddd; // border-radius: 3px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .2), 0 -1px 1px 0 rgba(0,0,0,.1);
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  font-family: 'Lato';
+  font-size: 14px;
+  height: 36px;
+  justify-content: center;
+  padding: 0 14px;
+  text-decoration: none;
+  transition: all .25s ease;
+  &:active:not(.outline) {
+    transform: translateY(3px);
+  }
+  i {
+    margin-right: 10px;
+  }
+  i,
+  span {
+    color: inherit;
+  }
+  &.icon {
+    justify-content: center;
+    width: 36px;
+  }
+  &.flat {
+    box-shadow: none;
+  }
+  &.primary {
+    background-color: $primary;
+    border-color: $primary;
+    // box-shadow: 0 4px 0 0 darken($color: $primary, $amount: 10);
+    color: rgba(255, 255, 255, .85);
+    &:active {
+      // box-shadow: 0 1px 0 0 darken($color: $primary, $amount: 10);
+    }
+    &.outline {
+      background-color: #fff;
+      color: $primary;
+    }
+  }
+  &.danger {
+    background-color: $danger;
+    border-color: $danger;
+    // box-shadow: 0 4px 0 0 darken($color: $danger, $amount: 10);
+    color: rgba(255, 255, 255, .85);
+    &:active {
+      // box-shadow: 0 1px 0 0 darken($color: $danger, $amount: 10);
+    }
+    &.outline {
+      background-color: #fff;
+      color: $danger;
+    }
+  }
+  &.alternative {
+    background-color: $alternative;
+    border-color: $alternative;
+    // box-shadow: 0 4px 0 0 darken($color: $alternative, $amount: 10);
+    color: rgba(255, 255, 255, .85);
+    &:active {
+      // box-shadow: 0 1px 0 0 darken($color: $alternative, $amount: 10);
+    }
+    &.outline {
+      background-color: #fff;
+      box-shadow: none;
+      color: $alternative;
+    }
+  }
+  &.dark {
+    background-color: $dark;
+    border-color: $dark;
+    // box-shadow: 0 4px 0 0 darken($color: $dark, $amount: 10);
+    color: rgba(255, 255, 255, .85);
+    &:active {
+      // box-shadow: 0 1px 0 0 darken($color: $dark, $amount: 10);
+    }
+    &.outline {
+      background-color: #fff;
+      color: $dark;
+    }
+  }
+  &.success {
+    background-color: $success;
+    border-color: $success;
+    // box-shadow: 0 4px 0 0 darken($color: $success, $amount: 10);
+    color: rgba(255, 255, 255, .85);
+    &:active {
+      // box-shadow: 0 1px 0 0 darken($color: $success, $amount: 10);
+    }
+    &.outline {
+      background-color: #fff;
+      box-shadow: none;
+      color: $success;
+    }
+    &.flat {
+      background-color: #fff;
+      border-color: transparent;
+      color: $success; // font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    background-color: #eee;
+    // box-shadow: 0 4px 0 0 darken($color:#eee, $amount: 10);
+    color: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+input,
+select,
+textarea,
+.ng-select-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  // border-left: 3px solid lighten($color: $dark, $amount: 20);
+  border-left: 3px solid #555 !important;
+  border-radius: 4px;
+  color: #333;
+  font-family: 'Lato';
+  font-size: 14px;
+  height: 36px;
+  padding: 4px 8px;
+  width: 0;
+  &:focus {
+    border-left-color: #f39c12 !important;
+    outline: none;
+  }
+  &:disabled, &:not(.ngx-datepicker-input)[readonly] {
+    background-color: #eee;
+    cursor: not-allowed;
+  }
+}
+
+.ng-select-container input {
+  border-left: none !important;
+}
+
+textarea {
+  height: auto;
+}
+
+input,
+textarea,
+.ng-select-container {
+  box-shadow: inset 0 1px 5px 0 rgba(0, 0, 0, .1);
+}
+
+select {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .14);
+}
+
+.custom-cell span {
+  // font-family: 'Lato';
+  font-size: 14px;
+  color: #444 !important;
+}
+
+// debido a que el header es fijo, bajamos la notificación un poco
+.snotify-rightTop {
+  top: 60px !important;
+}
+// le damos una fuente y tamaño al cuerpo
+.snotifyToast__body {
+  font-family: 'Lato';
+  font-size: 15px;
+}
+
+.ng-select .ng-select-container {
+  align-items: flex-end;
+  display: flex !important;
+  height: 36px !important;
+  // line-height: 35px !important;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-input>input {
+  box-sizing: border-box !important;
+}
+
+.ng-option-label {
+  color: #444;
+  font-family: 'Lato';
+  font-size: 14px;
+}
+
+.empty-row {
+  text-align: center !important;
+  font-size: 14px;
+  padding-top: 15px !important;
+  color: #444;
+}
+
+.ngx-datepicker-calendar-container {
+  z-index: 5;
+}
+.options .ngx-datepicker-input {
+  width: 100% !important;
+}
+ngx-daterangepicker {
+  box-shadow: 0 2px 1px 0 rgba(0,0,0,.2);
+  height: 36px !important;
+}
+/* daterangepicker */
+.ngx-daterangepicker {
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  height: 36px !important;
+
+  .input-section {
+    height: inherit !important;
+    padding: 3px 10px !important;
+
+    .label-txt,
+    .value-txt {
+      text-align: center;
+      padding-right: 3px !important;
+    }
+
+    .value-txt {
+      font-size: 12px !important;
+    }
+
+    .cell-icon {
+      bottom: 0px !important;
+    }
+  }
+}
+
+.calendar {
+  border-color: #ccc !important;
+
+  .arrow {
+    border-color: #ccc !important;
+  }
+
+  .side-container {
+    .side-button {
+      border-color: #ccc !important;
+      
+      &:hover {
+        background-color: #555 !important;
+      }
+    }
+  }
+}

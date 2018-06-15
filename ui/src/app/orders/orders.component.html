@@ -1,0 +1,36 @@
+<h1 class="title">Registrar venta</h1>
+
+<form (ngSubmit)="createOrder()">
+  <article class="form-body">
+    <!-- Producto/servicio -->
+    <!-- <select name="service" [(ngModel)]="order.service">
+      <option value="">Seleccionar servicio</option>
+    </select> -->
+    <ng-select
+      name="service"
+      [items]="services"
+      bindLabel="name"
+      bindValue="code"
+      [(ngModel)]="order.service"
+      (change)="findService()"
+    >
+    </ng-select>
+    <!-- Código del servicio -->
+    <input type="text" readonly name="code" placeholder="Código del producto" [(ngModel)]="service.code">
+    <!-- Tarifa -->
+    <input type="text" readonly name="cost" placeholder="Costo" [ngModel]="service.cost | currency:symbolDisplay:''">
+    <!-- Placa -->
+    <input type="text" [disabled]="service.needPlate === false" name="plate" placeholder="Placa" [(ngModel)]="order.plate">
+    <!-- Cantidad -->
+    <input type="text" required name="quantity" placeholder="Cantidad" [(ngModel)]="quantity" (change)="preCalculate()">
+    <!-- Efectivo -->
+    <input type="text" required name="cash" placeholder="Efectivo" [ngModel]="aditional.cash | currency:symbolDisplay:''" (change)="calculate($event)">
+    <!-- Total -->
+    <input type="text" required readonly name="total" placeholder="Total" [ngModel]="order.total | currency:symbolDisplay:''" (ngModelChange)="order.total = $event">
+    <!-- Cambio -->
+    <input type="text" required readonly name="change" placeholder="Cambio" [ngModel]="aditional.change | currency:symbolDisplay:''">
+  </article>
+  <footer class="form-foot">
+    <button class="btn success">Registrar</button>
+  </footer>
+</form>

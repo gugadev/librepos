@@ -1,0 +1,26 @@
+<figure class="logo">
+<!-- <img src="http://www.harveycomunicacion.com/weblog/marcas/belatrix/belatrix-empresa-lider-desarrollo-software-medida-inauguro-oficinas-buenos-aires/?aid=5475&sa=1"
+  alt="logo"> -->
+  <img src="https://i.imgur.com/5c3qkTD.png" alt="logo">
+</figure>
+
+<form (ngSubmit)="login()">
+  <header class="form-head">
+    <h2 class="title">Ingreso al sistema</h2>
+  </header>
+  <article class="form-body">
+    <input type="text" name="username" placeholder="Nombre de usuario" autocomplete="off" [(ngModel)]="auth.username">
+    <input type="password" name="password" placeholder="Contraseña" autocomplete="off" [(ngModel)]="auth.password">
+  </article>
+  <section class="errors" *ngIf="errors.length > 0">
+    <p class="error" *ngFor="let error of errors">
+      <i class="material-icons">highlight_off</i>
+      <span>{{ error }}</span>
+    </p>
+  </section>
+  <footer class="form-foot">
+    <button class="btn primary" [disabled]="isFetching">
+      Ingresar
+    </button>
+  </footer>
+</form>

@@ -1,0 +1,40 @@
+:host {
+  padding: 25px;
+  overflow: auto;
+}
+
+// .title {
+//   visibility: hidden;
+// }
+
+form {
+  // border: 1px solid red;
+  margin: 0 auto;
+  max-width: 600px;
+
+  .form-body {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    padding: 20px 0;
+
+    select, input, ng-select {
+      flex: 0 0 30%;
+      margin: 10px;
+    }
+
+    // select[name="service"],
+    // input[name="cost"],
+    // input[name="code"],
+    // ng-select {
+    //   flex: 0 0 30%;
+    // }
+  }
+
+  .form-foot {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 10px;
+  }
+}
