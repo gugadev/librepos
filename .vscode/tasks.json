@@ -10,6 +10,16 @@
                 "${workspaceFolder}/core/LibrePOS/LibrePOS.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/core/LibrePOS/LibrePOS.csproj"
+            ],
+            "problemMatcher": "$msCompile"
         }
     ]
 }

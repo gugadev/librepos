@@ -5,12 +5,13 @@ import { ServiceQuery } from './query.model';
 import { PagedData } from '../shared/paged-data.model';
 import { Service } from './service.model';
 import { EmissionPoint } from '../emission-points/emission-point.model';
+import { Environment } from '../shared/utils/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicesService {
-  private url = 'http://127.0.0.1:5000/api/services';
+  private url = `${Environment.get().apiUrl}/services`;
 
   constructor(private http: HttpClient) { }
 

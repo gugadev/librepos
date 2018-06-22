@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
 import { LoginModule } from './login/login.module';
 import { HomeModule } from './home/home.module';
+import { SettingsModule } from './settings/settings.module';
 import { UsersModule } from './users/users.module';
 import { EmissionPointsModule } from './emission-points/emission-points.module';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
@@ -29,6 +30,7 @@ import { ProfileModule } from './profile/profile.module';
     // self modules
     LoginModule,
     HomeModule,
+    SettingsModule,
     UsersModule,
     EmissionPointsModule,
     ServicesModule,

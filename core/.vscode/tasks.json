@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/PosPE/PosPE.csproj"
+                "${workspaceFolder}/LibrePOS/LibrePOS.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

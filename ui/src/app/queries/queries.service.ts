@@ -5,12 +5,13 @@ import { Page } from '../shared/page.model';
 import { DocumentQuery } from './document-query';
 import { Document } from './document';
 import { PagedData } from '../shared/paged-data.model';
+import { Environment } from '../shared/utils/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QueriesService {
-  private url = 'http://localhost:5000/api/orders';
+  private url = `${Environment.get().apiUrl}/orders`;
 
   constructor(private http: HttpClient) { }
 
@@ -81,7 +82,7 @@ export class QueriesService {
     return new Promise((ok: Function, fail: Function) => {
       this
       .http
-      .get(`http://localhost:5000/api/reports/general`, {
+      .get(`${Environment.get().apiUrl}/reports/general`, {
         params,
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`

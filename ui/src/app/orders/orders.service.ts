@@ -5,12 +5,13 @@
 import { Injectable } from '@angular/core';
 import { Order } from './order.model';
 import { HttpClient } from '@angular/common/http';
+import { Environment } from '../shared/utils/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
-  private url = 'http://127.0.0.1:5000/api/orders';
+  private url = `${Environment.get().apiUrl}/orders`;
 
   constructor(private http: HttpClient) { }
 

@@ -54,18 +54,18 @@ namespace Pos.Controllers
 
             // Find the user responsible of this operation
             var username = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            // get the user owner of this operation
+            var user = await userRepository.Find(username);
             
             /* === Instances of Configuration model that represent
                     configurations of this specific emission point === */
-            var serieConf = await configurationRepository.Get("SERIE_PREDETERMINADA");
-            var docTypeConf = await configurationRepository.Get("TIPO_DOC_EMISOR");
-            var correlaConf = await configurationRepository.Get("CORRELATIVO");
-            var docNumberConf = await configurationRepository.Get("NUMERO_DOC_EMISOR");
-            var issuerNameConf = await configurationRepository.Get("NOMBRE_EMISOR");
-            var taxRateConf = await configurationRepository.Get("IGV_TASA");
-            
-            // get the user owner of this operation
-            var user = await userRepository.Find(username);
+            var serieConf = await configurationRepository.Get("SERIE", user.EmissionPoint.Id);
+            var docTypeConf = await configurationRepository.Get("TIPO_DOC_EMISOR", user.EmissionPoint.Id);
+            var correlaConf = await configurationRepository.Get("CORRELATIVO", user.EmissionPoint.Id);
+            var docNumberConf = await configurationRepository.Get("NUMERO_DOC_EMISOR", user.EmissionPoint.Id);
+            var issuerNameConf = await configurationRepository.Get("NOMBRE_EMISOR", user.EmissionPoint.Id);
+            var taxRateConf = await configurationRepository.Get("IGV_TASA", user.EmissionPoint.Id);
 
             foreach(Order order in orders.Data)
             {
@@ -127,7 +127,7 @@ namespace Pos.Controllers
                 });
 
                 correlaConf.Value = (Int32.Parse(correlaConf.Value) + 1).ToString();
-                correlaConf = await configurationRepository.Update(correlaConf);
+                correlaConf = await configurationRepository.Update(correlaConf, user.EmissionPoint.Id);
             }
 
             return Json(new StandardResponse

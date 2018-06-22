@@ -5,11 +5,13 @@ import { ReportQuery } from './report-query';
 import { Page } from '../shared/page.model';
 import { Report } from './report.model';
 import { PagedData } from '../shared/paged-data.model';
+import { Environment } from '../shared/utils/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReportsService {
+  private url = `${Environment.get().apiUrl}/reports`;
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +25,7 @@ export class ReportsService {
     return new Promise((ok: Function, fail: Function) => {
       this
       .http
-      .get('http://localhost:5000/api/reports/user', {
+      .get(`${this.url}/user`, {
         params,
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -57,7 +59,7 @@ export class ReportsService {
     return new Promise((ok: Function, fail: Function) => {
       this
       .http
-      .get('http://localhost:5000/api/reports/user/raw', {
+      .get(`${this.url}/user/raw`, {
         params,
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`

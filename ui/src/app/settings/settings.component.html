@@ -1,0 +1,34 @@
+<h1 class="title">Ajustes Predeterminados</h1>
+
+<form (ngSubmit)="updateSettings()">
+  <article class="form-body">
+    <select name="zone" [(ngModel)]="settings.emissionPoint" (change)="getSettings()">
+      <option value="0">Punto de emisión</option>
+      <option *ngFor="let zone of zones" [value]="zone.id">{{ zone.name }}</option>
+    </select>
+    <div class="empty"></div>
+    <div class="form-group">
+      <label for="serie">Serie</label>
+      <input type="text" id="serie" name="serie" [(ngModel)]="settings.serie" (change)="validate()">
+    </div>
+    <div class="form-group">
+      <label for="documentType">Tipo de documento</label>
+      <input type="text" id="documentType" name="documentType" [(ngModel)]="settings.documentType" (change)="validate()">
+    </div>
+    <div class="form-group">
+      <label for="issuerName">Nombre del emisor</label>
+      <input type="text" id="issuerName" name="issuerName" [(ngModel)]="settings.issuerName" (change)="validate()">
+    </div>
+    <div class="form-group">
+      <label for="issuerRUC">RUC del emisor</label>
+      <input type="text" id="issuerRUC" name="issuerRUC" [(ngModel)]="settings.issuerRUC" (change)="validate()">
+    </div>
+    <div class="form-group">
+      <label for="igvRate">Tasa IGV %</label>
+      <input type="text" id="igvRate" name="igvRate" [(ngModel)]="settings.igvRate" (change)="validate()">
+    </div>
+  </article>
+  <footer class="form-actions">
+    <button class="btn primary" [disabled]="!canSubmit">Update settings</button>
+  </footer>
+</form>

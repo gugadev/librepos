@@ -17,6 +17,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { QueriesComponent } from './queries/queries.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
 
 export const routes: Routes = [
   {
@@ -27,7 +28,12 @@ export const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      // usuarios
+      // settings
+      {
+        path: 'settings',
+        component: SettingsComponent
+      },
+      // users
       {
         path: 'users',
         component: UsersComponent,
@@ -46,7 +52,7 @@ export const routes: Routes = [
           }
         ]
       },
-      // puntos de emisión
+      // emission points or counters
       {
         path: 'emission_points',
         component: EmissionPointsComponent,
@@ -65,7 +71,7 @@ export const routes: Routes = [
           }
         ]
       },
-      // servicios
+      // services
       {
         path: 'services',
         component: ServicesComponent,
@@ -84,17 +90,17 @@ export const routes: Routes = [
           }
         ]
       },
-      // ventas
+      // orders
       {
         path: 'orders',
         component: OrdersComponent
       },
-      // consultas
+      // queries
       {
         path: 'queries',
         component: QueriesComponent
       },
-      // reportes
+      // reports
       {
         path: 'reports',
         component: ReportsComponent

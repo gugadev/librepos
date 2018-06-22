@@ -20,36 +20,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private service: HomeService) {
-    this.menus.push({
-      path: '/users',
-      name: 'Usuarios',
-      icon: 'people'
-    });
-    this.menus.push({
-      path: '/emission_points',
-      name: 'Puntos E.',
-      icon: 'store'
-    });
-    this.menus.push({
-      path: '/services',
-      name: 'Servicios',
-      icon: 'dashboard'
-    });
-    this.menus.push({
-      path: '/orders',
-      name: 'Ventas',
-      icon: 'local_atm'
-    });
-    this.menus.push({
-      path: '/queries',
-      name: 'Consultas',
-      icon: 'search'
-    });
-    this.menus.push({
-      path: '/reports',
-      name: 'Reportes',
-      icon: 'pie_chart'
-    });
+    this.generateMenu();
   }
 
   public getRouterOutletState(outlet) {
@@ -69,6 +40,46 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
+  private generateMenu(): void {
+    this.menus = [
+      {
+        path: '/users',
+        name: 'Usuarios',
+        icon: 'people'
+      },
+      {
+        path: '/zones',
+        name: 'Zonas',
+        icon: 'store'
+      },
+      {
+        path: '/services',
+        name: 'Servicios',
+        icon: 'dashboard'
+      },
+      {
+        path: '/orders',
+        name: 'Ventas',
+        icon: 'local_atm'
+      },
+      {
+        path: '/queries',
+        name: 'Consultas',
+        icon: 'search'
+      },
+      {
+        path: '/reports',
+        name: 'Reportes',
+        icon: 'pie_chart'
+      },
+      {
+        path: '/settings',
+        name: 'Ajustes',
+        icon: 'settings'
+      }
+    ];
+  }
+
   async ngOnInit() {
     this.company = 'Company';
     this.user = await this.service.checkAuth();
@@ -78,13 +89,13 @@ export class HomeComponent implements OnInit {
         break;
       }
       case 'ventas': {
-        const notAllowedModules = ['Users', 'Services', 'Counters'];
-        this.menus = this.menus.filter(menu => !notAllowedModules.includes(menu.name));
+        const notAllowedModules = ['/users', '/services', '/zones', '/settings'];
+        this.menus = this.menus.filter(menu => !notAllowedModules.includes(menu.path));
         break;
       }
       case 'contabilidad': {
-        const notAllowedModules = ['Users', 'Services', 'Counters', 'Orders'];
-        this.menus = this.menus.filter(menu => !notAllowedModules.includes(menu.name));
+        const notAllowedModules = ['/users', '/services', '/zones', 'orders', '/settings'];
+        this.menus = this.menus.filter(menu => !notAllowedModules.includes(menu.path));
         break;
       }
     }

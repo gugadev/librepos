@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Environment } from '../shared/utils/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   public login(credentials): Promise<any> {
-    return this.http.post(this.url, credentials, {
+    return this.http.post(Environment.get().authUrl, credentials, {
       headers: {
         'Content-Type': 'application/json'
       }

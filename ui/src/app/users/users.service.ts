@@ -5,12 +5,13 @@ import { PagedData } from '../shared/paged-data.model';
 import { User } from './user.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserQuery } from './query.model';
+import { Environment } from '../shared/utils/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private url = 'http://127.0.0.1:5000/api/users';
+  private url = `${Environment.get().apiUrl}/users`;
 
   constructor(private http: HttpClient) {}
 
@@ -112,7 +113,7 @@ export class UserService {
     return new Promise((ok, fail) => {
       this
       .http
-      .post('http://localhost:5000/api/auth/register', model, {
+      .post(`${Environment.get()}/auth/register`, model, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

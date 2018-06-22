@@ -1,0 +1,67 @@
+:host {
+  padding: 25px;
+  overflow: auto;
+}
+label {
+  color: #444;
+  font-family: 'Lato';
+  font-size: 14px;
+  font-weight: bold;
+}
+form {
+  // border: 1px solid red;
+  margin: 0 auto;
+  max-width: 800px;
+
+  .form-body {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    padding: 20px 0;
+
+    select[name="zone"] {
+      flex: 0 0 calc(33.3% - 20px);
+      margin-left: 10px;
+    }
+
+    .empty {
+      flex: 0 0 70%;
+    }
+    
+    .form-group {
+      display: block;
+      flex: 0 0 33.3%;
+      margin: 10px 0;
+      padding: 10px;
+
+      label {
+        display: block;
+        padding: 8px 0;
+      }
+    
+      label, input, select, ng-select {
+        width: 100%;
+      }
+    }
+
+    .form-group:nth-child(3),
+    .form-group:nth-child(6) {
+      margin-left: 0 !important;
+    }
+
+    // select[name="service"],
+    // input[name="cost"],
+    // input[name="code"],
+    // ng-select {
+    //   flex: 0 0 30%;
+    // }
+  }
+
+  .form-actions {
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 10px;
+  }
+}

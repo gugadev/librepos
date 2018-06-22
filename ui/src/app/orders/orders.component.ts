@@ -90,7 +90,7 @@ export class OrdersComponent implements OnInit {
       this
       ._snotify
       .success('Venta registrada', null, {
-        position: SnotifyPosition.rightBottom,
+        position: SnotifyPosition.rightTop,
         pauseOnHover: true,
         timeout: 3000
       });

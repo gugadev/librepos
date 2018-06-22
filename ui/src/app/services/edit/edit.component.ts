@@ -6,7 +6,7 @@ import { EmissionPointService } from '../../emission-points/emission-point.servi
 import { Page } from '../../shared/page.model';
 import { EmissionPointQuery } from '../../emission-points/query.model';
 import { ActivatedRoute } from '@angular/router';
-import { SnotifyService } from 'ng-snotify';
+import { SnotifyService, SnotifyPosition } from 'ng-snotify';
 
 @Component({
   selector: 'app-edit',
@@ -49,6 +49,7 @@ export class EditComponent implements OnInit {
       this
       ._snotify
       .success('Servicio actualizado', null, {
+        position: SnotifyPosition.rightTop,
         closeOnClick: true,
         timeout: 3000,
       });
